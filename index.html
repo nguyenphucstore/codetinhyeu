@@ -73,17 +73,23 @@ const grid=document.getElementById("productGrid");
 products.forEach((p,i)=>grid.innerHTML+=`<article class="product"><div class="icon">${p.icon}</div><h3>${p.name}</h3><div class="desc">${p.desc}</div><div class="price">${p.price}</div><button class="btn buy" onclick="buy(${i})">Mua ngay</button></article>`);
 
 function buy(i){
- const p=products[i]; currentCode="NTP-"+p.code+"-"+Date.now().toString().slice(-8);
- document.getElementById("mTitle").textContent="Xác nhận đơn hàng";
- document.getElementById("mProduct").textContent=p.name;
- document.getElementById("mPrice").textContent=p.price;
- document.getElementById("orderCode").textContent=currentCode;
- const amount=parseInt((p.price||"").replace(/\D/g,""),10);
- // QR cố định do chủ shop cung cấp.
- // Lưu ý: nội dung tài khoản/người nhận được mã hóa bên trong QR,
- // nên QR phải thuộc đúng tài khoản NGUYEN ANH KIET trước khi sử dụng.
- document.getElementById("modal").classList.add("open");
- document.getElementById("count").textContent="1";
+  const p = products[i];
+
+  // Tạo mã: NTP-TênSảnPhẩm-Số
+  const productName = p.name
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  const number = Date.now().toString().slice(-8);
+
+  currentCode = `NTP-${productName}-${number}`;
+
+  document.getElementById("mTitle").textContent = "Xác nhận đơn hàng";
+  document.getElementById("mProduct").textContent = p.name;
+  document.getElementById("mPrice").textContent = p.price;
+  document.getElementById("orderCode").textContent = currentCode;
+
+  document.getElementById("modal").style.display = "flex";
 }
 function closeModal(){document.getElementById("modal").classList.remove("open")}
 async function copyCode(){try{await navigator.clipboard.writeText(currentCode);alert("Đã sao chép mã đơn: "+currentCode)}catch(e){alert(currentCode)}}
