@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NguyenThanhPhucStore.VN</title>
+<style>
+:root{--bg:#050507;--card:#0d0d12;--line:#24242d;--red:#ff1838;--muted:#a3a3ad;--white:#f7f7fa}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#261018 0,#08080b 38%,#050507 100%);color:var(--white);font-family:Arial,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#08080beF;border-bottom:1px solid #202027;backdrop-filter:blur(16px)}
+.nav{max-width:1100px;margin:auto;padding:14px 18px;display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(145deg,#ff314c,#9e001b);display:grid;place-items:center;font-weight:900;font-size:24px;box-shadow:0 0 25px #ff183844}.brand{font-size:19px;font-weight:800;flex:1}.cart{background:#17171e;border:1px solid #34343d;color:#fff;border-radius:14px;padding:11px 15px}
+.hero{max-width:1100px;margin:25px auto;padding:0 18px}.heroBox{min-height:260px;border:1px solid #30303a;border-radius:28px;padding:35px;background:linear-gradient(135deg,#160b10,#0b0b10);display:flex;flex-direction:column;justify-content:center;box-shadow:0 0 50px #ff183811}.tag{color:#ff5a70;font-weight:800;letter-spacing:2px}.hero h1{font-size:clamp(32px,7vw,64px);margin:12px 0}.hero p{color:var(--muted);font-size:18px}.btn{display:inline-block;border:0;border-radius:13px;padding:13px 18px;background:linear-gradient(135deg,#ff2341,#b80020);color:#fff;font-weight:800;text-decoration:none;cursor:pointer}
+main{max-width:1100px;margin:auto;padding:0 18px 60px}.sectionTitle{font-size:34px;margin:35px 0 6px}.sub{color:var(--muted);margin-bottom:22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.product{background:linear-gradient(145deg,#101016,#09090d);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 12px 30px #0005}.icon{font-size:38px}.product h3{margin:10px 0 6px}.desc{color:var(--muted);min-height:42px}.price{font-size:23px;font-weight:900;margin:15px 0}.buy{width:100%}
+.info{margin-top:35px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.info div{padding:20px;border:1px solid var(--line);border-radius:18px;background:#0d0d12}.info b{font-size:18px}.info p{color:var(--muted);line-height:1.5}
+footer{border-top:1px solid #22222a;padding:30px 18px;color:var(--muted);text-align:center}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:20;padding:20px;align-items:center;justify-content:center}.modal.open{display:flex}.box{width:min(500px,100%);background:#101016;border:1px solid #383842;border-radius:24px;padding:24px}.box h2{margin-top:0}.row{display:flex;justify-content:space-between;margin:10px 0}.pay{background:#08080c;border:1px solid #2b2b35;border-radius:14px;padding:15px;margin:16px 0}.code{font-size:26px;font-weight:900;color:#ff5369;letter-spacing:2px;text-align:center;margin:18px 0}.qrPay{text-align:center}.qrWrap{display:flex;justify-content:center;margin:14px 0}.qrWrap img{width:min(300px,80vw);height:auto;background:#fff;border-radius:14px;padding:8px}.close{float:right;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}small{color:var(--muted)}
+@media(max-width:500px){.brand{font-size:16px}.heroBox{min-height:220px}.sectionTitle{font-size:29px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="logo">N</div><div class="brand">NguyenThanhPhucStore.VN</div><button class="cart">🛒 <span id="count">0</span></button></div></header>
+
+<section class="hero"><div class="heroBox">
+<div class="tag">PREMIUM • DIGITAL SERVICES</div>
+<h1>NguyenThanhPhucStore.VN</h1>
+<p>Mua dịch vụ nhanh chóng. Thanh toán → nhận mã đơn → inbox để xử lý đơn.</p>
+<a class="btn" href="#products">Xem sản phẩm</a>
+</div></section>
+
+<main>
+<h2 class="sectionTitle" id="products">Dịch vụ & sản phẩm</h2>
+<div class="sub">Chọn gói bạn muốn mua. Giá có thể chỉnh trực tiếp trong file.</div>
+<div class="grid" id="productGrid"></div>
+
+<div class="info">
+<div><b>🔐 Thanh toán</b><p>Hiển thị thông tin thanh toán ngay trên website trước khi xác nhận đơn.</p></div>
+<div><b>🧾 Mã đơn riêng</b><p>Mỗi đơn được tạo một mã riêng để khách gửi khi inbox.</p></div>
+<div><b>💬 Inbox nhận đơn</b><p>Sau khi thanh toán, khách gửi mã đơn cho bạn để xác nhận và xử lý.</p></div>
+<div><b>⚡ Xử lý nhanh</b><p>Quy trình đơn giản: chọn gói → thanh toán → gửi mã đơn → nhận hỗ trợ.</p></div>
+</div>
+</main>
+
+<footer>© 2026 NguyenThanhPhucStore.VN<br><br>Premium • Entertainment • Digital Services</footer>
+
+<div class="modal" id="modal"><div class="box">
+<button class="close" onclick="closeModal()">×</button>
+<h2 id="mTitle">Tạo đơn</h2><div class="row"><span>Sản phẩm</span><b id="mProduct"></b></div>
+<div class="row"><span>Giá</span><b id="mPrice"></b></div>
+<div class="pay qrPay">
+<b>📱 Quét mã QR để thanh toán</b>
+<div class="qrWrap"><img id="paymentQR" src="payment-qr.jpg" alt="VietQR thanh toán"></div>
+<p><strong>MB BANK</strong><br>Chủ TK: NGUYEN ANH KIET</p>
+<small>Quét bằng ứng dụng ngân hàng. Kiểm tra đúng tên người nhận trước khi chuyển khoản.</small>
+</div>
+<div class="code" id="orderCode"></div>
+<button class="btn buy" onclick="copyCode()">📋 Sao chép mã đơn</button>
+<p><small>Sau khi chuyển khoản, inbox cho shop và gửi mã đơn ở trên để xác nhận.</small></p>
+</div></div>
+
+<script>
+const products=[
+ {name:"Netflix Premium",icon:"🔴",price:"170.000đ",desc:"Gói giải trí Premium"},
+ {name:"Discord Nitro",icon:"💜",price:"120.000đ",desc:"Gói Nitro 1 tháng"},
+ {name:"Spotify Premium",icon:"🟢",price:"70.000đ",desc:"Tài khoản nghe nhạc Premium"},
+ {name:"YouTube Premium",icon:"▶️",price:"70.000đ",desc:"Xem video Premium"},
+ {name:"CapCut Pro",icon:"✂️",price:"100.000đ",desc:"Công cụ chỉnh sửa chuyên nghiệp"},
+ {name:"Canva Pro",icon:"🎨",price:"100.000đ",desc:"Thiết kế với Canva Pro"},
+ {name:"Video Star Premium",icon:"⭐",price:"170.000đ",desc:"Edit video & hiệu ứng"},
+ {name:"Dịch vụ mạng xã hội",icon:"📈",price:"Liên hệ",desc:"Buff tương tác / view / follow theo gói"}
+];
+let currentCode="";
+const grid=document.getElementById("productGrid");
+products.forEach((p,i)=>grid.innerHTML+=`<article class="product"><div class="icon">${p.icon}</div><h3>${p.name}</h3><div class="desc">${p.desc}</div><div class="price">${p.price}</div><button class="btn buy" onclick="buy(${i})">Mua ngay</button></article>`);
+
+function buy(i){
+ const p=products[i]; currentCode="NTP-"+Date.now().toString().slice(-8);
+ document.getElementById("mTitle").textContent="Xác nhận đơn hàng";
+ document.getElementById("mProduct").textContent=p.name;
+ document.getElementById("mPrice").textContent=p.price;
+ document.getElementById("orderCode").textContent=currentCode;
+ const amount=parseInt((p.price||"").replace(/\D/g,""),10);
+ // QR cố định do chủ shop cung cấp.
+ // Lưu ý: nội dung tài khoản/người nhận được mã hóa bên trong QR,
+ // nên QR phải thuộc đúng tài khoản NGUYEN ANH KIET trước khi sử dụng.
+ document.getElementById("modal").classList.add("open");
+ document.getElementById("count").textContent="1";
+}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+async function copyCode(){try{await navigator.clipboard.writeText(currentCode);alert("Đã sao chép mã đơn: "+currentCode)}catch(e){alert(currentCode)}}
+</script>
+</body>
+</html>
